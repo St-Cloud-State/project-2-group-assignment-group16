@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-/** Minimal base class so existing states (Login/Client/Clerk/Manager) compile unchanged. */
+/** Minimal base so existing states compile unchanged. */
 public abstract class WarehouseState implements State, Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -12,4 +12,11 @@ public abstract class WarehouseState implements State, Serializable {
 
   @Override
   public String getName() { return getClass().getSimpleName(); }
+
+  /** Bridge: Context-driven run(ctx) calls the parameterless run() your states already implement. */
+  @Override
+  public final void run(Context ctx) { this.run(); }
+
+  /** Your states already implement this. Keep them unchanged. */
+  public abstract void run();
 }

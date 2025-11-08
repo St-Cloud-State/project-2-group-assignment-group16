@@ -4,11 +4,13 @@ import java.util.Scanner;
 public final class Context implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  // --- Public constants expected by many template states (keep these) ---
-  public static final int TO_CLIENT  = 1;
-  public static final int TO_CLERK   = 2;
-  public static final int TO_MANAGER = 3;
-  public static final int EXIT_APP   = 9;
+// --- Public constants expected by many template states ---
+public static final int TO_LOGIN  = 0;   
+public static final int TO_CLIENT  = 1;
+public static final int TO_CLERK   = 2;
+public static final int TO_MANAGER = 3;
+public static final int EXIT_APP   = 9;
+
 
   // Internal ids
   public enum StateId { LOGIN, CLIENT, CLERK, MANAGER }
@@ -40,9 +42,12 @@ public final class Context implements Serializable {
   private StateId currentId;
 
   private Context() {
-    // If your LoginState provides a static setContext, this line enables it without editing the state:
     try { LoginState.setContext(this); } catch (Throwable ignore) {}
+    try { ClientMenuState.setContext(this); } catch (Throwable ignore) {}
+    try { ClerkMenuState.setContext(this); } catch (Throwable ignore) {}
+    try { ManagerMenuState.setContext(this); } catch (Throwable ignore) {}
   }
+
 
   // ===== Loop =====
   public void start() {
@@ -77,27 +82,40 @@ public final class Context implements Serializable {
     return in.nextLine().trim();
   }
 
-  // ===== Compatibility: numeric state changes expected by older states =====
-  public void changeState(int code) {
-    if (code == EXIT_APP) {
-      stop();
-      return;
-    }
-    switch (code) {
-      case TO_CLIENT:
-        setState(StateId.CLIENT);
-        break;
-      case TO_CLERK:
-        setState(StateId.CLERK);
-        break;
-      case TO_MANAGER:
-        setState(StateId.MANAGER);
-        break;
-      default:
-        System.out.println("[WARN] Unknown state code: " + code);
-        break;
-    }
+  public String getToken(String prompt) {
+  // alias used by template states; treat as single-line token read
+  return getLine(prompt);
   }
+
+  // ===== Compatibility: numeric state changes expected by older states =====
+public void changeState(int code) {
+  if (code == EXIT_APP) {   
+    stop();
+    return;
+  }
+  if (code == 0) {          // many templates use 0 for "Logout"
+    logout();
+    return;
+  }
+  switch (code) {
+    case TO_LOGIN:          // support explicit "back to Login"
+      setState(StateId.LOGIN);
+      break;
+    case TO_CLIENT:
+      setState(StateId.CLIENT);
+      break;
+    case TO_CLERK:
+      setState(StateId.CLERK);
+      break;
+    case TO_MANAGER:
+      setState(StateId.MANAGER);
+      break;
+    default:
+      System.out.println("[WARN] Unknown state code: " + code);
+      break;
+  }
+}
+
 
   // Logout with “return to where we started” behavior
   public void logout() {
@@ -157,7 +175,17 @@ public final class Context implements Serializable {
       this.entryRole = StateId.LOGIN; // client path begins at login
     }
   }
-  public StateId getEntryRole() { return entryRole; }
+    // INT code expected by states like Clerk/Client/Manager menus
+  public int getEntryRole() {
+    if (entryRole == StateId.CLERK)   return TO_CLERK;
+    if (entryRole == StateId.MANAGER) return TO_MANAGER;
+    return TO_LOGIN; // default when session began at login
+  }
+
+  // Enum getter 
+  public StateId getEntryRoleId() {
+    return entryRole;
+  }
 
   public Warehouse getWarehouse() { return warehouse; }
 

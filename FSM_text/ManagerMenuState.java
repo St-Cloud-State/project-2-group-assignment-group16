@@ -12,14 +12,12 @@ public final class ManagerMenuState extends WarehouseState {
   private static final int BECOME_CLERK = 4;
   private static final int HELP = 9;
 
-  
   private ManagerMenuState() {}
   public static ManagerMenuState instance() {
     if (instance == null) instance = new ManagerMenuState();
     return instance;
   }
   public static void setContext(Context ctx) { context = ctx; }
-
 
   private String getToken(String prompt) { return context.getToken(prompt); }
   private int getNumber(String prompt)   { return context.getInt(prompt);   }
@@ -52,18 +50,30 @@ public final class ManagerMenuState extends WarehouseState {
   }
 
   public void process() {
-    help();
+    help(); // show the Manager menu immediately on entry
     int command;
     while ((command = getCommand()) != EXIT) {
       switch (command) {
-        case ADD_PRODUCT:       addProduct();                break;
-        case SHOW_WAITLIST:     displayWaitlistForProduct(); break;
-        case RECEIVE_SHIPMENT:  receiveShipment();           break;
-        case BECOME_CLERK:      becomeClerk();               break;
-        case HELP:              help();                      break;
-        default:                System.out.println("Invalid.");
+        case ADD_PRODUCT:
+          addProduct();
+          break;
+        case SHOW_WAITLIST:
+          displayWaitlistForProduct();
+          break;
+        case RECEIVE_SHIPMENT:
+          receiveShipment();
+          break;
+        case BECOME_CLERK:
+          becomeClerk();
+          return; // IMPORTANT: stop Manager loop so Clerk can take over immediately
+        case HELP:
+          help();
+          break;
+        default:
+          System.out.println("Invalid.");
       }
     }
+    // EXIT selected -> logout to Login (per assignment)
     logout();
   }
 
@@ -125,14 +135,12 @@ public final class ManagerMenuState extends WarehouseState {
   }
 
   private void becomeClerk() {
+    // Do not modify entryRole; Context already knows we started as Manager
     context.changeState(Context.TO_CLERK);
   }
 
   private void logout() {
-    int entry = context.getEntryRole();
-    // If Manager was reached from Clerk (via Become Clerk -> Become Manager path in your matrix),
-    // honor that; otherwise return to Login.
-    if (entry == Context.TO_CLERK) context.changeState(Context.TO_CLERK);
-    else                           context.changeState(Context.TO_LOGIN);
+    // Per spec, Manager logout returns to Login
+    context.changeState(Context.TO_LOGIN);
   }
 }

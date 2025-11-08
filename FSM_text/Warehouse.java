@@ -191,7 +191,8 @@ public class Warehouse implements Serializable {
   public void printAllClients() {
     for (Iterator it = clientList.getClients(); it.hasNext();) {
       Client c = (Client) it.next();
-      System.out.printf("%s  %-20s  balance: $%.2f%n", c.getId(), c.getName(), c.getAddress(), c.getBalance());
+      System.out.printf("%s  %-20s  %-20s  balance: $%.2f%n",
+          c.getId(), c.getName(), c.getAddress(), c.getBalance());
     }
   }
   public void printAllProducts() {

@@ -88,6 +88,10 @@ public final class ClientMenuState extends WarehouseState {
 
   private void listProducts() {
     Iterator it = context.getWarehouse().getProducts();
+    if (it == null || !it.hasNext()) {
+      System.out.println("No products available.");
+      return;
+    }
     while (it.hasNext()) {
       Product p = (Product) it.next();
       System.out.printf("%s  %-20s  $%.2f%n", p.getId(), p.getName(), p.getUnitPrice());
@@ -136,6 +140,7 @@ public final class ClientMenuState extends WarehouseState {
     }
     System.out.println("Order placed:");
     System.out.print(inv.toString()); 
+    System.out.println(); // spacing
   }
 
   private void logout() {

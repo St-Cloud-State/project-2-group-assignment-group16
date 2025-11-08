@@ -31,8 +31,9 @@ public final class ClerkMenuState extends WarehouseState {
   }
 
   // ---------- Menu + loop ----------
-  public void help() {
-    System.out.println("\nClerk commands:");
+  private void help() {
+    System.out.println();
+    System.out.println("Clerk commands:");
     System.out.println(EXIT + "  Logout");
     System.out.println(ADD_CLIENT + "  Add client");
     System.out.println(SHOW_PRODUCTS + "  Show products (qty & price)");
@@ -54,17 +55,19 @@ public final class ClerkMenuState extends WarehouseState {
   }
 
   public void process() {
+    // Print the Clerk menu immediately upon entering this state
     help();
+
     int command;
     while ((command = getCommand()) != EXIT) {
       switch (command) {
-        case ADD_CLIENT:                addClient();                        break;
-        case SHOW_PRODUCTS:             showAllProducts();                  break;
-        case SHOW_CLIENTS:              showAllClients();                   break;
-        case SHOW_CLIENTS_WITH_BALANCE: showClientsWithOutstandingBalance();break;
-        case RECORD_PAYMENT:            recordPayment();                    break;
-        case BECOME_CLIENT:             becomeClient();                     break;
-        case HELP:                      help();                             break;
+        case ADD_CLIENT:                addClient();                         break;
+        case SHOW_PRODUCTS:             showAllProducts();                   break;
+        case SHOW_CLIENTS:              showAllClients();                    break;
+        case SHOW_CLIENTS_WITH_BALANCE: showClientsWithOutstandingBalance(); break;
+        case RECORD_PAYMENT:            recordPayment();                     break;
+        case BECOME_CLIENT:             becomeClient();                      break;
+        case HELP:                      help();                              break;
         default:                        System.out.println("Invalid.");
       }
     }
