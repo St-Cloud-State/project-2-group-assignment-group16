@@ -144,7 +144,14 @@ public final class ClientMenuState extends WarehouseState {
   }
 
   private void logout() {
-    // Route based on how this client session started
+    // If this client session was launched by Clerk, return to Clerk once
+    if (context.isClientFromClerk()) {
+      context.setClientFromClerk(false);           // consume the one-time return
+      context.changeState(Context.TO_CLERK);
+      return;
+    }
+
+    // Otherwise, route based on how the session began
     int entry = context.getEntryRole();
     if (entry == Context.TO_CLERK) {
       context.changeState(Context.TO_CLERK);
@@ -152,4 +159,5 @@ public final class ClientMenuState extends WarehouseState {
       context.changeState(Context.TO_LOGIN);
     }
   }
+
 }

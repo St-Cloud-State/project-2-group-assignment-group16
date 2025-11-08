@@ -66,7 +66,7 @@ public final class ClerkMenuState extends WarehouseState {
         case SHOW_CLIENTS:              showAllClients();                    break;
         case SHOW_CLIENTS_WITH_BALANCE: showClientsWithOutstandingBalance(); break;
         case RECORD_PAYMENT:            recordPayment();                     break;
-        case BECOME_CLIENT:             becomeClient();                      break;
+        case BECOME_CLIENT:             becomeClient();                      return; // stop Clerk loop; let context run the new Client state immediately
         case HELP:                      help();                              break;
         default:                        System.out.println("Invalid.");
       }
@@ -143,6 +143,7 @@ public final class ClerkMenuState extends WarehouseState {
       return;
     }
     context.setClientId(id);
+    context.setClientFromClerk(true); // set flag before changing state
     context.changeState(Context.TO_CLIENT);
   }
 

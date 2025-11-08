@@ -187,6 +187,14 @@ public void changeState(int code) {
     return entryRole;
   }
 
+  // --- Session flags ---
+  // Client from Clerk
+  private boolean clientFromClerk = false;
+
+  public void setClientFromClerk(boolean v) { this.clientFromClerk = v; }
+  public boolean isClientFromClerk() { return this.clientFromClerk; }
+
+
   public Warehouse getWarehouse() { return warehouse; }
 
   // ===== Logging (used by WarehouseState default hooks) =====
