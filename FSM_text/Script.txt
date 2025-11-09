@@ -1,0 +1,363 @@
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 2
+<- EXIT  LoginState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 1
+Client name: John
+Client address: 123
+Client added: C1  John                  balance: $0.00
+Enter command (9 for help): 1
+Client name: Mary
+Client address: 456
+Client added: C2  Mary                  balance: $0.00
+Enter command (9 for help): 1
+Client name: Sam
+Client address: 789
+Client added: C3  Sam                   balance: $0.00
+Enter command (9 for help): 1
+Client name: Alex
+Client address: 654
+Client added: C4  Alex                  balance: $0.00
+Enter command (9 for help): 1
+Client name: Isaac
+Client address: 321
+Client added: C5  Isaac                 balance: $0.00
+Enter command (9 for help): 3
+C1  John                  123                   balance: $0.00
+C2  Mary                  456                   balance: $0.00
+C3  Sam                   789                   balance: $0.00
+C4  Alex                  654                   balance: $0.00
+C5  Isaac                 321                   balance: $0.00
+Enter command (9 for help): 0
+<- EXIT  ClerkMenuState
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 3
+<- EXIT  LoginState
+-> ENTER ManagerMenuState
+
+Manager commands:
+0  Logout
+1  Add product
+2  Display waitlist for a product
+3  Receive a shipment
+4  Become a clerk
+9  Help
+Enter command (9 for help): 1
+Product ID (leave blank to auto-assign): 
+Name/Description: Laptop
+Unit price: 1
+Initial quantity: 10
+Product added: P1  Laptop                price:$1.00  qty:10
+Enter command (9 for help): 1
+Product ID (leave blank to auto-assign): 
+Name/Description: Phone
+Unit price: 2
+Initial quantity: 20
+Product added: P2  Phone                 price:$2.00  qty:20
+Enter command (9 for help): 1
+Product ID (leave blank to auto-assign): 
+Name/Description: Tablet
+Unit price: 3
+Initial quantity: 30
+Product added: P3  Tablet                price:$3.00  qty:30
+Enter command (9 for help): 1
+Product ID (leave blank to auto-assign): 
+Name/Description: Fax
+Unit price: 4
+Initial quantity: 40
+Product added: P4  Fax                   price:$4.00  qty:40
+Enter command (9 for help): 1
+Product ID (leave blank to auto-assign):  
+Name/Description: Mouse
+Unit price: 5
+Initial quantity: 50
+Product added: P5  Mouse                 price:$5.00  qty:50
+Enter command (9 for help): 4
+<- EXIT  ManagerMenuState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 2
+P1  Laptop                price:$1.00  qty:10
+P2  Phone                 price:$2.00  qty:20
+P3  Tablet                price:$3.00  qty:30
+P4  Fax                   price:$4.00  qty:40
+P5  Mouse                 price:$5.00  qty:50
+Enter command (9 for help): 6
+Enter Client ID: C1
+<- EXIT  ClerkMenuState
+-> ENTER ClientMenuState
+
+Client commands:
+0  Exit/Logout
+1  Show client details
+2  Show products (price)
+3  Show client transactions
+4  Add item to wishlist
+5  Display wishlist
+6  Place an order
+9  Help
+Enter command (9 for help): 4
+Product ID: P1
+Quantity: 5
+Added to wishlist: P1 x 5
+Enter command (9 for help): 4
+Product ID: P3
+Quantity: 5
+Added to wishlist: P3 x 5
+Enter command (9 for help): 4
+Product ID: P5
+Quantity: 5
+Added to wishlist: P5 x 5
+Enter command (9 for help): 5
+P1 x 5 (added Sat Nov 08 19:47:37 EST 2025)
+P3 x 5 (added Sat Nov 08 19:47:45 EST 2025)
+P5 x 5 (added Sat Nov 08 19:47:49 EST 2025)
+Enter command (9 for help): 0
+<- EXIT  ClientMenuState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 6
+Enter Client ID: C2
+<- EXIT  ClerkMenuState
+-> ENTER ClientMenuState
+
+Client commands:
+0  Exit/Logout
+1  Show client details
+2  Show products (price)
+3  Show client transactions
+4  Add item to wishlist
+5  Display wishlist
+6  Place an order
+9  Help
+Enter command (9 for help): 4
+Product ID: P1
+Quantity: 7
+Added to wishlist: P1 x 7
+Enter command (9 for help): 4
+Product ID: P2
+Quantity: 7
+Added to wishlist: P2 x 7
+Enter command (9 for help): 4
+Product ID: P4
+Quantity: 7
+Added to wishlist: P4 x 7
+Enter command (9 for help): 5
+P1 x 7 (added Sat Nov 08 19:49:23 EST 2025)
+P2 x 7 (added Sat Nov 08 19:49:27 EST 2025)
+P4 x 7 (added Sat Nov 08 19:49:33 EST 2025)
+Enter command (9 for help): 0
+<- EXIT  ClientMenuState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 0
+<- EXIT  ClerkMenuState
+-> ENTER ManagerMenuState
+
+Manager commands:
+0  Logout
+1  Add product
+2  Display waitlist for a product
+3  Receive a shipment
+4  Become a clerk
+9  Help
+Enter command (9 for help): 0
+<- EXIT  ManagerMenuState
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 1
+Enter Client ID: C3
+<- EXIT  LoginState
+-> ENTER ClientMenuState
+
+Client commands:
+0  Exit/Logout
+1  Show client details
+2  Show products (price)
+3  Show client transactions
+4  Add item to wishlist
+5  Display wishlist
+6  Place an order
+9  Help
+Enter command (9 for help): 4
+Product ID: P1
+Quantity: 6
+Added to wishlist: P1 x 6
+Enter command (9 for help): 4
+Product ID: P2
+Quantity: 6
+Added to wishlist: P2 x 6
+Enter command (9 for help): 4
+Product ID: P5
+Quantity: 6
+Added to wishlist: P5 x 6
+Enter command (9 for help): 5
+P1 x 6 (added Sat Nov 08 19:51:22 EST 2025)
+P2 x 6 (added Sat Nov 08 19:51:28 EST 2025)
+P5 x 6 (added Sat Nov 08 19:51:35 EST 2025)
+Enter command (9 for help): 0
+<- EXIT  ClientMenuState
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 1
+Enter Client ID: C2
+<- EXIT  LoginState
+-> ENTER ClientMenuState
+
+Client commands:
+0  Exit/Logout
+1  Show client details
+2  Show products (price)
+3  Show client transactions
+4  Add item to wishlist
+5  Display wishlist
+6  Place an order
+9  Help
+Enter command (9 for help): 6
+Order placed:
+INV1  2025-11-08  $49.00
+  P1 x 7 @ 1.00 = 7.00
+  P2 x 7 @ 2.00 = 14.00
+  P4 x 7 @ 4.00 = 28.00
+
+Enter command (9 for help): 0
+<- EXIT  ClientMenuState
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 2
+<- EXIT  LoginState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 3
+C1  John                  123                   balance: $0.00
+C2  Mary                  456                   balance: $49.00
+C3  Sam                   789                   balance: $0.00
+C4  Alex                  654                   balance: $0.00
+C5  Isaac                 321                   balance: $0.00
+Enter command (9 for help): 6
+Enter Client ID: C3
+<- EXIT  ClerkMenuState
+-> ENTER ClientMenuState
+
+Client commands:
+0  Exit/Logout
+1  Show client details
+2  Show products (price)
+3  Show client transactions
+4  Add item to wishlist
+5  Display wishlist
+6  Place an order
+9  Help
+Enter command (9 for help): 6
+Order placed:
+INV2  2025-11-08  $45.00
+  P1 x 3 @ 1.00 = 3.00
+  P2 x 6 @ 2.00 = 12.00
+  P5 x 6 @ 5.00 = 30.00
+
+Enter command (9 for help): 0
+<- EXIT  ClientMenuState
+-> ENTER ClerkMenuState
+
+Clerk commands:
+0  Logout
+1  Add client
+2  Show products (qty & price)
+3  Show all clients
+4  Show clients with outstanding balance
+5  Record payment from client
+6  Become a client (enter ClientID)
+9  Help
+Enter command (9 for help): 3
+C1  John                  123                   balance: $0.00
+C2  Mary                  456                   balance: $49.00
+C3  Sam                   789                   balance: $45.00
+C4  Alex                  654                   balance: $0.00
+C5  Isaac                 321                   balance: $0.00
+Enter command (9 for help): 4
+Clients with outstanding balance:
+C2   Mary                 balance: $49.00
+C3   Sam                  balance: $45.00
+Enter command (9 for help): 0
+<- EXIT  ClerkMenuState
+-> ENTER LoginState
+
+=== Login Menu ===
+1) Client
+2) Clerk
+3) Manager
+0) Exit
+Choose option: 0
